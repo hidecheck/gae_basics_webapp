@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="ja">
+  <meta charset="UTF-8">
+  <title>Example Application</title>
+</head>
+<body>
+  <h2>Example Application Photo Gallary</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit" class="btn btn-primary">送信</button>
+  </form>
+
+  <ul>
+  {% for blob in blobs %}
+    <li><img src="{{ blob.public_url }}" style="width:30%;height:auto;">{{ blob.name }}</li>
+  {% endfor %}
+  </ul>
+</body>
+</html>

@@ -1,1 +1,1 @@
-# gae_basics_webapp
+# Google App Engine Basics - Sample Web Application

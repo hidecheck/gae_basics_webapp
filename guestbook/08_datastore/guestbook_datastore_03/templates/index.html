@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+<head lang="ja">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <title>GuestBook</title>
+</head>
+<style>
+
+.my-section {
+    border: 1px solid #999;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+.my-section .title {
+    font-size: 1.4rem;
+    padding: 5px 0;
+}
+
+</style>
+<body>
+<nav class="blue darken-2" role="navigation">
+  <div class="nav-wrapper container">
+    <a id="logo-container" href="#" class="brand-logo">{{ message }}</a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="/photos">画像ギャラリー</a></li>
+      </ul>
+  </div>
+</nav>
+
+<div id="app" class="container">
+  <div class="section">
+    <div class="section my-section">
+      <div class="title">新規登録</div>
+      <form v-on:submit.prevent>
+        <p><input type="text" v-model="newAuthor" placeholder="お名前またはハンドル" required="required"></p>
+        <p><textarea v-model="newMessage" rows="4" cols="40" placeholder="一言" class="materialize-textarea"></textarea></p>
+        <button v-on:click="add" class="btn waves-effect waves-light blue darken-1">Add</button>
+      </form>
+    </div>
+    <div class="section my-section">
+      <div class="title">ID指定取得</div>
+      <form v-on:submit.prevent>
+        <p><input type="text" v-model="keyId" placeholder="ID" required="required"></p>
+        <button v-on:click="getById" class="btn waves-effect waves-light">Get</button>
+      </form>
+    </div>
+    <div class="section my-section">
+      <div class="title">リスト取得</div>
+      <div class="section">
+        <button v-on:click="getAll" class="btn waves-effect waves-light green">List</button>
+        <button v-on:click="clearList" class="btn waves-effect waves-light orange darken-1">Clear</button>
+      </div>
+      <ul>
+        <li v-for="(greeting, index) in greetings">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">[[ greeting.id ]]: </span>
+              <p><input type="text" v-model="greeting.author"></p>
+              <p><textarea v-model="greeting.message" rows="4" cols="40" class="materialize-textarea"></textarea></p>
+              <button v-on:click="update(index)" class="btn waves-effect waves-light blue lighten-2">Update</button>
+              <button v-on:click="deleteItem(index)" class="btn waves-effect waves-light red">Delete</button>
+              <input type="text" v-model="newComments[index]" placeholder="コメント">
+              <button v-on:click="addComment(greeting.id, index)" class="btn waves-effect waves-light blue darken-1">
+                Add Comment
+              </button>
+              <button v-on:click="getComments(greeting.id)" class="btn waves-effect waves-light">
+                Get Comments
+              </button>
+              <div>
+              <ul class="collection">
+                <li v-for="(comment, index) in comments[greeting.id]" class="collection-item">[[ comment ]]</li>
+              </ul>
+            </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+  </div>
+  <hr>
+  <div class="section">
+    Response
+    <button v-on:click="clear" class="btn waves-effect waves-light orange darken-1">Clear</button>
+    <pre>Status: [[responseStatus]]</pre>
+    <pre>[[response]]</pre>
+    <hr>
+<!--    Javascriptのデバッグ用です。ここのコメントアウトを解除すると変数が確認できます。-->
+<!--    <pre>[[$data]]</pre>-->
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.19.0/dist/axios.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>      
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    delimiters: ['[[', ']]'],
+    data: {
+      newAuthor: null,
+      newMessage: null,
+      keyId: null,
+      parentId: null,
+      newComments: [],
+      comments: [],
+      greetings: [],
+      responseStatus: null,
+      response: null
+    },
+    methods: {
+      clear: function(event){
+        this.response = null
+        this.responseStatus = null
+      },
+      clearList: function(event){
+        this.greetings = []
+      },
+      getAll: function (event) {
+        axios.get('api/greetings')
+                .then(function (response) {
+                  console.log(response.data)
+                  this.response = response.data
+                  this.greetings = response.data.greetings
+                  this.responseStatus = response.status
+                  console.log('status:', response.status)
+                }.bind(this))
+                .catch(function (error) {
+                  this.response = error.response.data
+                  this.responseStatus = error.response.status
+                  console.log(error)
+                }.bind(this))
+      },
+      add: function (event) {
+        if(!this.newAuthor){
+          return
+        }
+        axios.post('api/greetings', {
+          author: this.newAuthor,
+          message: this.newMessage
+        })
+                .then(function (response) {
+                  this.response = response.data
+                  this.responseStatus = response.status
+                  console.log('status:', response.status)
+                  console.log(response.data)
+                  this.newAuthor = ''
+                  this.newMessage = ''
+                  M.toast({html: '登録完了！'})
+                }.bind(this))
+                .catch(function (error) {
+                  this.response = error.response.data
+                  this.responseStatus = error.response.status
+                  console.log(error)
+                }.bind(this))
+      },
+      getById: function (event) {
+        if (!this.keyId){
+          return
+        }
+        url = 'api/greetings/' + this.keyId
+        console.log(url)
+        axios.get(url)
+                .then(function (response) {
+                  this.response = response.data
+                  this.responseStatus = response.status
+                  console.log('status:', response.status)
+                  console.log(response.data)
+                }.bind(this))
+                .catch(function (error) {
+                  this.response = error.response.data
+                  this.responseStatus = error.response.status
+                  console.log(error)
+                }.bind(this))
+      },
+      update: function (index) {
+        url = 'api/greetings/' + this.greetings[index]['id']
+        axios.put(url, {
+          author: this.greetings[index]['author'],
+          message: this.greetings[index]['message']
+        })
+                .then(function (response) {
+                  this.response = response.data
+                  this.responseStatus = response.status
+                  console.log('status:', response.status)
+                  console.log(response.data)
+                  M.toast({html: '更新完了！'})
+                }.bind(this))
+                .catch(function (error) {
+                  this.response = error.response.data
+                  this.responseStatus = error.response.status
+                  console.log(error)
+                }.bind(this))
+      },
+      deleteItem: function (index) {
+        url = 'api/greetings/' + this.greetings[index]['id']
+        console.log(url)
+        axios.delete(url)
+                .then(function (response) {
+                  this.responseStatus = response.status
+                  console.log('status:', response.status)
+                  this.response = response.data
+                  // this.greetings[index] = null
+                  this.$delete(this.greetings, index)
+                  console.log(response.data)
+                  M.toast({html: '削除完了！'})
+                }.bind(this))
+                .catch(function (error) {
+                  this.response = error.response.data
+                  this.responseStatus = error.response.status
+                  console.log(error)
+                }.bind(this))
+      },
+      addComment: function (parentId, index) {
+        if (!parentId || !this.newComments[index]){
+          return
+        }
+        console.log(this.newComments)
+        axios.post('api/comments', {
+          parent_id: parentId,
+          message: this.newComments[index]
+        })
+                .then(function (response) {
+                  this.response = response.data
+                  this.responseStatus = response.status
+                  console.log('status:', response.status)
+                  console.log(response.data)
+                  // this.greetings[index] = ''
+                  // this.newComment = ''
+                  this.comments[parentId] = []
+                  this.newComments[index] = ''
+                  // this.parentId = ''
+                }.bind(this))
+                .catch(function (error) {
+                  this.response = error.response.data
+                  this.responseStatus = error.response.status
+                  console.log(error)
+                }.bind(this))
+      },
+      getComments: function (parentId) {
+        if (!parentId){
+          return
+        }
+        url = 'api/comments?parent_id=' + parentId
+        axios.get(url)
+                .then(function (response) {
+                  this.response = response.data
+                  this.responseStatus = response.status
+                  console.log('status:', response.status)
+                  console.log(response.data)
+                  this.comments[parentId] = response.data.comments.map(function(comment) {
+                      return comment.message;
+                  });
+                }.bind(this))
+                .catch(function (error) {
+                  this.response = error.response.data
+                  this.responseStatus = error.response.status
+                  console.log(error)
+                }.bind(this))
+
+      }
+    }
+  })
+</script>
+</body>
+</html>
+{% endautoescape %}

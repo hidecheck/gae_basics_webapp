@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="ja">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <title>GuestBook</title>
+</head>
+<style>
+.card-image img {
+    height: 320px;
+    object-fit: cover;
+}
+</style>
+<body>
+  <nav class="blue darken-2" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">画像ギャラリー</a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="/">top</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="section">
+      <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required="required">
+        <button type="submit" class="btn btn-primary">送信</button>
+      </form>
+    </div>
+    <hr>
+    <div class="row">
+    {% for blob in blobs %}
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-image">
+            <img src="{{ blob.public_url }}">
+          </div>
+          <div class="card-content">
+            <p>{{ blob.name }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
