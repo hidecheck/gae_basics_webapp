@@ -38,6 +38,6 @@ def update(entity):
     if 'id' in entity:
         del entity['id']
     client = datastore.Client()
-    client.put(ent ity)
+    client.put(entity)
     entity['id'] = entity.key.id
     return entity
