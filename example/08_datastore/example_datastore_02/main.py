@@ -11,8 +11,8 @@ logging.getLogger().setLevel(logging.DEBUG)
 
 @app.route('/')
 def home():
-    res = insert()
-    # res = get_all()
+    # res = insert()
+    res = get_all()
 
     return res
 
