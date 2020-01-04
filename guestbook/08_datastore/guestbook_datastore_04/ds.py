@@ -35,7 +35,9 @@ def get_by_id(key_id):
 
 
 def update(entity):
+    if 'id' in entity:
+        del entity['id']
     client = datastore.Client()
-    client.put(entity)
+    client.put(ent ity)
     entity['id'] = entity.key.id
     return entity
