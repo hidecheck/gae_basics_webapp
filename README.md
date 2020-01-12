@@ -66,6 +66,14 @@
 
 
 ## 第9章 エンティティグループ
+### 9.2 エンティティグループを作成する
+* [example_entitygroup_01](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/09_entitygroup/example_entitygroup_01)
+### 9.3 [実習] エンティティグループの作成
+* [guestbook_entitygroup_01](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/09_entitygroup/guestbook_entitygroup_01)
+### 9.4 エンティティグループを取得する
+* [example_entitygroup_02](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/09_entitygroup/example_entitygroup_02)
+### 9.5 [実習] エンティティグループを取得る
+* [guestbook_entitygroup_02](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/09_entitygroup/guestbook_entitygroup_02)
 
 ## 第10章 Google Cloud Strage を使う
 
