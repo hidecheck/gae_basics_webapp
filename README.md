@@ -86,4 +86,7 @@
 * [guestbook_gcs_02](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/10_gcs/guestbook_gcs_02)
 
 ## 第11章 その他のサービス
-
+### 11.2 Cloud Tasks
+* [example_otherservice_01_cloudtasks](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/11_otherservice/example_otherservice_01_cloudtasks)
+### 11.4 Cloud Scheduler
+* [example_otherservice_02_cloudscheduler](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/11_otherservice/example_otherservice_02_cloudscheduler)
