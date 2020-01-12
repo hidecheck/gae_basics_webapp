@@ -43,6 +43,27 @@
 * [example_logging_0３](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/07_logging/example_logging_0３)
 
 ## 第8章 Cloud Datastore を使う
+### 8.2 Datastore にデータを保存する
+* [example_datastore_01](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/08_datastore/example_datastore_01)
+### 8.3 実習 データの保存
+* [guestbook_datastore_01](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/08_datastore/guestbook_datastore_01) 
+### 8.4 Datastore からデータを取得する
+* [example_datastore_02](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/08_datastore/example_datastore_02)
+### 8.5 実習 データの取得
+* [guestbook_datastore_02](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/08_datastore/guestbook_datastore_02)
+### 8.6 データを１件取得する
+* [example_datastore_03](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/08_datastore/example_datastore_03)
+### 8.7 実習 Key を使ったデータ取得
+* [guestbook_datastore_03](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/08_datastore/guestbook_datastore_03)
+### 8.8 Datastoreからデータを更新する
+* [example_datastore_04](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/08_datastore/example_datastore_04)
+### 8.9 実習 データの更新
+* [guestbook_datastore_04](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/08_datastore/guestbook_datastore_04)
+### 8.10 Datastoreからデータを削除する
+* [example_datastore_05](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/08_datastore/example_datastore_05)
+### 8.11 実習」 データの削除
+* [guestbook_datastore_05](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/08_datastore/guestbook_datastore_05)
+
 
 ## 第9章 エンティティグループ
 
