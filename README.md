@@ -76,6 +76,14 @@
 * [guestbook_entitygroup_02](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/09_entitygroup/guestbook_entitygroup_02)
 
 ## 第10章 Google Cloud Strage を使う
+### 10.4 GCS にファイルをアップロードする
+* [example_gcs_01](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/10_gcs/example_gcs_01)
+### 10.5 [実習] GCS にファイルをアップロードする
+* [guestbook_gcs_01](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/10_gcs/guestbook_gcs_01)
+### 10.6 GCS からファイルを取得する
+* [example_gcs_02](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/10_gcs/example_gcs_02)
+### 10.7 [実習] GCS からファイルを取得する
+* [guestbook_gcs_02](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/10_gcs/guestbook_gcs_02)
 
 ## 第11章 その他のサービス
 
