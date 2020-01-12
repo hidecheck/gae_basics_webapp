@@ -33,6 +33,15 @@
 * [guestbook_flask_06](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/06_flask/guestbook_flask_06)
 
 ## 第7章 ログ
+### 7.2 Python logging モジュールを使ったログ出力
+* [example_logging_01](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/07_logging/example_logging_01)
+### 7.3 [実習] ログ出力　
+* [guestbook_logging](https://github.com/hidecheck/gae_basics_webapp/tree/master/guestbook/07_logging/guestbook_logging)
+### 7.4 Logging Client Libraries を使ったログ出力
+* [example_logging_02](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/07_logging/example_logging_02)
+### 7.5 Cloud Logging Handler を使ったログの出力
+* [example_logging_0３](https://github.com/hidecheck/gae_basics_webapp/tree/master/example/07_logging/example_logging_0３)
+
 ## 第8章 Cloud Datastore を使う
 
 ## 第9章 エンティティグループ
