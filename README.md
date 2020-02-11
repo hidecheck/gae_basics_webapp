@@ -1,4 +1,5 @@
-# 「書籍タイトル」 - 完成コード
+# 「Google Cloud Platform GAEソフトウェア開発入門」 完成コード
+「Google Cloud Platform GAEソフトウェア開発入門――Google Cloud Authorized Trainerによる実践解説」 の完成コードを後悔しています。
 
 ## 第4章 GAEアプリケーション作成
 ### 4.1 最初のGAEアプリケーションを作成する
