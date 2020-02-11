@@ -1,11 +1,13 @@
 import logging
 
-from flask import Flask
+from flask import Flask, render_template
 from google.cloud import logging as cloud_logging
-from google.cloud.logging.handlers import setup_logging
 
 # ロギングクライアントオブジェクトを取得
 logging_client = cloud_logging.Client()
+
+# ロギングハンドラーに結びつける
+logging_client.setup_logging()
 
 # ロギングハンドラーを取得する
 log_handler = logging_client.get_default_handler()
@@ -16,11 +18,9 @@ logger = logging.getLogger("MyExampleApplication")
 # 出力レベルをセットする
 logger.setLevel(logging.DEBUG)
 
-# ロギングハンドラーに結びつける
-setup_logging(log_handler)
-
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def home():
