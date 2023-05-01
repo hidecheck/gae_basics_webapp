@@ -1,2 +1,2 @@
-Flask==1.1.1
+Flask==2.3.2
 google-cloud-logging==1.12.1
